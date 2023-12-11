@@ -14,37 +14,64 @@ public class ShiftWorkerClass {
 
     ShiftWorkerClass(String name, String gender, int shift, int age)
     {
-        this.name = name;
-        this.gender = gender;
-        this.shift = shift;
-        this.age = age;
+        setName(name);
+        setGender(gender);
+        setShift(shift);
+        setAge(age);
     }
     public void setName(String name) {
-        this.name = name;
+        try {
+            int nameSize = name.length();
+            if (nameSize>= 6 || nameSize<= 21) {
+                this.name = name;
+            }
+            else {
+                System.out.println(name.length());
+                throw new IllegalArgumentException("Invalid name");
+            }
+        }
+        catch(IllegalArgumentException e){
+            System.out.println(e);
+        }
     }
     public void setGender(String gender) {
-        if(gender == "Man"||gender=="Woman"||gender=="Non-Binary") {
-            this.gender = gender;
+        try {
+            if (gender == "Man" || gender == "Woman" || gender == "Non-Binary") {
+                this.gender = gender;
+            } else {
+                throw new IllegalArgumentException("Gender must be: Man, Woman, or Non-Binary");
+            }
         }
-        else{
-            System.out.println("Gender must be: Man, Woman, or Non-Binary");
+        catch(IllegalArgumentException e){
+            System.out.println(e);
         }
     }
     public void setShift(int shift) {
-        if(shift==1 || shift==2) {
-            this.shift = shift;
+        try {
+            if(shift==1||shift==2) {
+                this.shift = shift;
+            }
+            else{
+                System.out.println("Shift must be 1 for day or 2 for night");
+            }
         }
-        else{
-            System.out.println("Shift must be 1 for day or 2 for night");
+        catch(IllegalArgumentException e){
+            System.out.println(e);
         }
     }
     public void setAge(int age) {
-        if(age >=18) {
-            this.age = age;
+        try {
+            if(age >=18) {
+                this.age = age;
+            }
+            else{
+                throw new IllegalArgumentException("Invalid age");
+            }
         }
-        else{
-            System.out.println("Invalid Age");
+        catch(IllegalArgumentException e){
+            System.out.println(e);
         }
+
     }
     public int getAge() {
         return age;
